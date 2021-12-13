@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\VideosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,28 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/first_name', function () {
-    return 'Luka';
-
-});
-
-
-Route::get('/last_name', function () {
-    return 'Lortkipanidze';
-});
-
-
-Route::get('/age', function () {
-    return '21';
-});
-
-
-Route::get('/hobby', function () {
-    return 'Playing football';
-});
-
-
-Route::get('/job', function () {
-    return 'Software Engineer';
-});
+Route::get('/videos', [VideosController::class, 'index']);
