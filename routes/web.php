@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\VideosController;
+use App\Http\Controllers\ProductsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +13,37 @@ use App\Http\Controllers\VideosController;
 |
 */
 
+
+
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('mainPage');
+})->middleware(['auth'])->name('mainPage');
+
+require __DIR__.'/auth.php';
+//
+//
+Route::group(['prefix' => 'admin','middleware' => 'is_admin'] , function () {
+
+    Route::get('/admin/create', [ProductsController::class , "create"])->name("Admincreate");
+
+    Route::post("/admin/store", [ProductsController::class ,"store"])->name("adminstore");
+
+    Route::post("/admin/delete/{id}", [ProductsController::class ,"destroy"])->name("admindelete");
+
+    Route::get("/admin/show/{id}", [ProductsController::class ,"show"])->name("adminshow");
+
+    Route::get("/admin/edit/{id}", [ProductsController::class , "edit"])->name("adminedit");
+
+    Route::post("/admin/update", [ProductsController::class , "update"])->name("adminupdate");
+
 });
 
-Route::get('/videos', [VideosController::class, 'index']);
+Route::get('/', [ProductsController::class, 'index'])->name("index");
+
+Route::get('/admin', [ProductsController::class, 'index'])->name("Adminindex");
+
+
+
+
+

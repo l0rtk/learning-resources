@@ -17,23 +17,3 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-Route::post('/post', function() {
-  return response()->json([
-    'message' => 'წარმატებით განახლდა',
-]);
-});
-
-Route::put('/put', function() {
-  return response()->json([
-    'message' => 'წარმატებით დაემატა',
-]);
-});
-
-
-Route::delete('/delete', function() {
-  return response()->json([
-    'message' => 'წარმატებით წაიშალა',
-]);
-});
